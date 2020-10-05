@@ -1,0 +1,81 @@
+document
+  default <http://anotherexample.org/>
+  prefix vargen <http://openprovenance.org/vargen#>
+  prefix provone <http://purl.dataone.org/provone/2015/01/15/ontology#>
+  prefix dcterms <http://purl.org/dc/elements/1.1/>
+  prefix ns1 <http://purl.org/s-prov-v1-dev#>
+  prefix tmpl <http://openprovenance.org/tmpl#>
+  prefix vcard <http://www.w3.org/2006/vcard/ns#>
+  prefix var <http://openprovenance.org/var#>
+  prefix ex <http://example.org/>
+  
+  bundle mug:ScanningWorkFlow
+    default <http://anotherexample.org/>
+    prefix provone <http://purl.dataone.org/provone/2015/01/15/ontology#>
+    prefix mug <http://openprovenance.org/mug#>
+    prefix dcterms <http://purl.org/dc/elements/1.1/>
+    prefix ns1 <http://purl.org/s-prov-v1-dev#>
+    prefix tmpl <http://openprovenance.org/tmpl#>
+    prefix vcard <http://www.w3.org/2006/vcard/ns#>
+    prefix var <http://openprovenance.org/var#>
+    prefix ex <http://example.org/>
+    
+    agent(Wagenthaler, [ex:name="Lisa", prov:type="prov:Person"])
+    wasGeneratedBy(Snapshot255487, takingSnapshots, 2020-09-30T11:11:11.024000+01:00)
+    wasGeneratedBy(WSI-file255487, scanning, 2020-10-01T02:21:13.024000+01:00)
+    entity(Rack12475, [prov:type="Rack", ex:source="Rackstorage"])
+    entity(Snapshot255487, [prov:type="Snapshot", ex:source="Scanner7681"])
+    entity(WSI-file255487, [prov:type="WSI-file", ex:source="Scanner7681"])
+    entity(Slide255487, [ex:content="Tumor", prov:type="Slide", ex:source="Biobank"])
+    entity(Scanner7681, [prov:type="Scanner"])
+    entity(Server, [prov:type="Server"])
+    used(Slide255487, registration, -)
+    used(Scanner7681, settingFocuspoints, -)
+    used(Scanner7681, scanning, -)
+    used(WSI-file255487, storingWSI-file, -)
+    used(Rack12475, sorting, -)
+    used(Slide255487, sorting, -)
+    used(Snapshot255487, settingFocuspoints, -)
+    used(Rack12475, storingSlide, -)
+    used(Slide255487, Rack12475, -)
+    used(Slide255487, takingSnapshots, -)
+    used(Slide255487, cleaningQC, -)
+    used(Scanner7681, takingSnapshots, -)
+    used(Slide255487, scanning, -)
+    used(Snapshot255487, scanning, -)
+    used(WSI-file255487, Server, -)
+    used(Snapshot255487, ROIselection, -)
+    used(WSI-file255487, scanningQC, -)
+    used(Scanner7681, ROIselection, -)
+    used(Server, storingWSI-file, -)
+    used(Rack12475, Scanner7681, -)
+    used(Rack12475, cleaningQC, -)
+    wasDerivedFrom(Snapshot255487, Slide255487, -, -, -)
+    wasDerivedFrom(WSI-file255487, Snapshot255487, -, -, -)
+    wasAssociatedWith(registration, Kouros, -, [prov:role="register"])
+    wasAssociatedWith(takingSnapshots, Zerner, -, [prov:role="user"])
+    wasAssociatedWith(settingFocuspoints, Zerner, -, [prov:role="user"])
+    wasAssociatedWith(storingSlide, Kouros, -, [prov:role="storing"])
+    wasAssociatedWith(sorting, Kouros, -, [prov:role="sorting"])
+    wasAssociatedWith(cleaningQC, Wagenthaler, -, [prov:role="qualtitychecked"])
+    wasAssociatedWith(storingWSI-file, Wagenthaler, -, [prov:role="user"])
+    wasAssociatedWith(scanningQC, Wagenthaler, -, [prov:role="qualtitychecked"])
+    wasAssociatedWith(ROIselection, Zerner, -, [prov:role="user"])
+    wasAssociatedWith(cleaning, Kouros, -, [prov:role="cleaner"])
+    wasInfluencedBy(Slide255487, cleaning, [ex:fct="cleaned"])
+    activity(storingWSI-file, -, -, [prov.PROV_TYPE="UploadToServer"])
+    activity(registration, 2020-09-28T09:25:10.024000+01:00, 2020-09-28T09:26:10.024000+01:00, [prov.PROV_TYPE="registration"])
+    activity(scanningQC, 2020-10-02T08:00:00.024000+01:00, 2020-10-02T08:24:05.024000+01:00, [prov.PROV_TYPE="QualitycheckScans"])
+    activity(sorting, 2020-09-29T10:25:15.024000+01:00, 2020-09-29T10:25:30.024000+01:00, [prov.PROV_TYPE="Sorting"])
+    activity(scanning, 2020-09-30T13:30:40.024000+01:00, 2020-10-01T06:42:17.024000+01:00, [prov.PROV_TYPE="scanning"])
+    activity(storingSlide, 2020-10-01T07:05:00.024000+01:00, 2020-10-01T07:25:08.024000+01:00, [prov.PROV_TYPE="SlideStorage"])
+    activity(ROIselection, 2020-09-30T11:30:25.024000+01:00, 2020-09-30T13:30:40.024000+01:00, [prov.PROV_TYPE="ROIselection"])
+    activity(takingSnapshots, 2020-09-30T09:30:00.024000+01:00, 2020-09-30T11:30:00.024000+01:00, [prov.PROV_TYPE="takingSnapshots"])
+    activity(cleaningQC, 2020-09-30T09:25:10.024000+01:00, 2020-09-30T09:26:10.024000+01:00, [prov.PROV_TYPE="Qualitycheck"])
+    activity(settingFocuspoints, 2020-09-30T11:30:25.024000+01:00, 2020-09-30T13:30:40.024000+01:00, [prov.PROV_TYPE="settingFocuspoints"])
+    activity(cleaning, 2020-09-29T09:25:10.024000+01:00, 2020-09-29T10:25:10.024000+01:00, [prov.PROV_TYPE="cleaning", ex:test="123"])
+    agent(Zerner, [ex:name="Carmen", prov:type="prov:Person"])
+    agent(Kouros, [ex:name="Antonio Nikolaos", prov:type="prov:Person"])
+  endBundle
+endDocument
+
