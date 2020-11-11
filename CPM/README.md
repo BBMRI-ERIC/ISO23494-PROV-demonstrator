@@ -2,6 +2,6 @@
 
 This repository contains demo code for the development of ISO 23494 (Biotechnology— Provenance information model for biological specimen and data) 
 
-Test and Demo code for the CPM: Common Provenance Model
+Test and Demo code for PART 2: Common Provenance Model (CPM)
 
 
