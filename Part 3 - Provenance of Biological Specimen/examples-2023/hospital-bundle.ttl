@@ -11,9 +11,6 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix snomed: <http://purl.bioontology.org/ontology/SNOMEDCT/> .
  
-#http://purl.bioontology.org/ontology/SNOMEDCT/394584008
-#http://purl.obolibrary.org/obo/OMIABIS_0000052
-
 :connectorOfPrimarySample a prov:Entity , cpm:forwardConnector ;
 	cpm:receiverBundleId pathologylab:prov_of_study_slide_2007-PAT-34441208197199889-7780-BLK-LY-CUT07;
     prov:wasAttributedTo :receiverAgent ;

@@ -39,7 +39,7 @@
     prov:wasGeneratedBy :act05; 
     .
 
-act05 a prov:Activity,  :pbm:processingActivity;
+:act05 a prov:Activity,  :pbm:processingActivity;
 	prov:startedAtTime "2023-02-03T13:05:00.00000+01:00"^^xsd:dateTime ;
     prov:used :slideTakenFromStorage ;
 	prov:label "Relabeling of the Sample" ;
@@ -57,7 +57,7 @@ act05 a prov:Activity,  :pbm:processingActivity;
     prov:wasGeneratedBy :act04; 
     .
 
-act04 a prov:Activity,  pbm:pbm:retrievalActivity;
+:act04 a prov:Activity,  pbm:pbm:retrievalActivity;
 	prov:startedAtTime "2023-02-03T12:00:01.024000+01:00"^^xsd:dateTime ;
     prov:used :slide ;
     prov:used :drawerBox12 ;
@@ -69,7 +69,7 @@ act04 a prov:Activity,  pbm:pbm:retrievalActivity;
     ];      
     .
 
-act03 a prov:Activity,  pbm:pbm:storageActivity, obo:OBI_0000977;
+:act03 a prov:Activity,  pbm:pbm:storageActivity, obo:OBI_0000977;
 	prov:startedAtTime "2010-10-15T14:30:01.024000+01:00"^^xsd:dateTime ;
 	prov:endedAtTime "2023-02-03T12:00:01.024000+01:00"^^xsd:dateTime ;
     prov:used :slide ;
@@ -82,7 +82,7 @@ act03 a prov:Activity,  pbm:pbm:storageActivity, obo:OBI_0000977;
     ];      
     .
 
-:drawerBox12 a prov:Entity, pbm:deviceEntity
+:drawerBox12 a prov:Entity, pbm:deviceEntity;
     cpm:externalID "DB12" ;
     prov:label "Drawer Box 12"
     .
@@ -110,7 +110,7 @@ act03 a prov:Activity,  pbm:pbm:storageActivity, obo:OBI_0000977;
 	prov:label "CPM receipt activity" ;
     .
 
-:externalInputConnectorOfSlide  prov:Activity,  cpm:externalInputConnector.
+:externalInputConnectorOfSlide  a prov:Entity,  cpm:externalInputConnector ;
     prov:wasDerivedFrom pathologylab:connectorOfSlide ;
     prov:wasAttributedTo :senderAgent  .
 
