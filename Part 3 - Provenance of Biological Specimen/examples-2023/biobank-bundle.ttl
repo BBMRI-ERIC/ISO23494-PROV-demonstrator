@@ -12,45 +12,110 @@
 @prefix loinc: <https://biomedit.ch/rdf/sphn-resource/loinc/> .
 @prefix snomed: <http://snomed.info/id/> .
 
+:connectorOfSlideDelivered a prov:Entity , cpm:forwardConnector ;
+    prov:wasGeneratedBy :act_main ;
+    prov:specializationOf :slideDelivered .
 
 :act_main a prov:Activity , cpm:mainActivity ;
-    prov:used :connector_of_slide ;
+    prov:used :connectorOfSlideDelivered ;
     prov:used :externalInputConnector_of_primarysample;
-	dct:hasPart :act01, :act02, :act03, :act04  .
+	dct:hasPart :act01, :act02, :act03, :act04, :act05 .
 
-
-# connector and the main activity
-#biobankBundle.entity('biobank:connector_of_sample_215784545', (
-#    (prov.PROV_TYPE, 'cpm:senderConnector'),))
-#biobankBundle.specializationOf('biobank:sample_215784545', 'biobank:connector_of_sample_215784545')
-
-#biobankBundle.activity('biobank:act_main',None,None, {prov.PROV_TYPE: 'cpm:mainActivity'})
-
-#biobankBundle.used('biobank:act_main', 'biobank:externalInputConnector_of_sample_215784544')
-#biobankBundle.used('biobank:receipt_of_sample_215784544','pathologylab:connector_of_sample_215784544')
-#biobankBundle.wasGeneratedBy('biobank:externalInputConnector_of_sample_215784544','biobank:receipt_of_sample_215784544')
-#biobankBundle.wasDerivedFrom('biobank:externalInputConnector_of_sample_215784544','pathologylab:connector_of_sample_215784544')
-
-
-
+:act05 a prov:Activity,  :pbm:distributionActivity;
+	prov:startedAtTime "2023-02-03T16:00:00.00000+01:00"^^xsd:dateTime ;
+    prov:used :slideDelivered ;
+	prov:label "Distribution of the Slide" ;
+    prov:qualifiedAssociation [
+        a prov:Association ;
+        prov:agent   :worker4 ; 
+    ];      
+    .
 
 :slideDelivered a prov:Entity , pbm:sampleEntity, obo:OBI_0002125 ;  
     cpm:externalID "demo-study:sample007" ;
     pbm:hasPreservation  obo:OBIB_000067 ;
     prov:label "the sample delivered from the biobank to the researcher";
     prov:wasDerivedFrom :slideTakenFromStorage;
-    prov:wasGeneratedBy :actxx; 
+    prov:wasGeneratedBy :act05; 
     .
 
+act05 a prov:Activity,  :pbm:processingActivity;
+	prov:startedAtTime "2023-02-03T13:05:00.00000+01:00"^^xsd:dateTime ;
+    prov:used :slideTakenFromStorage ;
+	prov:label "Relabeling of the Sample" ;
+    prov:qualifiedAssociation [
+        a prov:Association ;
+        prov:agent   :worker3 ; 
+    ];      
+    .
 
 :slideTakenFromStorage a prov:Entity , pbm:sampleEntity, obo:OBI_0002125 ;  
     cpm:externalID "demo-study:sample007" ;
     pbm:hasPreservation  obo:OBIB_000067 ;
-    prov:label "the sample delivered from the biobank to the researcher";
-    prov:wasDerivedFrom :slideTakenFromStorage;
-    prov:wasGeneratedBy :act03; 
+    prov:label "the slide taken out of the long term storage";
+    prov:wasDerivedFrom :slide;
+    prov:wasGeneratedBy :act04; 
     .
 
+act04 a prov:Activity,  pbm:pbm:retrievalActivity;
+	prov:startedAtTime "2023-02-03T12:00:01.024000+01:00"^^xsd:dateTime ;
+    prov:used :slide ;
+    prov:used :drawerBox12 ;
+    pbm:toEnvironment  obo:NCIT_C70719; # Biospecimen Condition, at Room Temperature
+	prov:label "Retrieval of a slide from the long term storage" ;
+    prov:qualifiedAssociation [
+        a prov:Association ;
+        prov:agent   :worker3 ; 
+    ];      
+    .
+
+act03 a prov:Activity,  pbm:pbm:storageActivity, obo:OBI_0000977;
+	prov:startedAtTime "2010-10-15T14:30:01.024000+01:00"^^xsd:dateTime ;
+	prov:endedAtTime "2023-02-03T12:00:01.024000+01:00"^^xsd:dateTime ;
+    prov:used :slide ;
+    prov:used :drawerBox12 ;
+    pbm:toEnvironment  obo:NCIT_C70719; # Biospecimen Condition, at Room Temperature
+	prov:label "Long term storage" ;
+    prov:qualifiedAssociation [
+        a prov:Association ;
+        prov:agent   :worker2 ; 
+    ];      
+    .
+
+:drawerBox12 a prov:Entity, pbm:deviceEntity
+    cpm:externalID "DB12" ;
+    prov:label "Drawer Box 12"
+    .
+
+:act02 a prov:Activity,  pbm:receptionActivity ;
+	prov:startedAtTime "2010-10-15T11:30:01.024000+01:00"^^xsd:dateTime ;
+	prov:endedAtTime "2010-10-15T11:30:01.024000+01:00"^^xsd:dateTime ;
+    prov:used :slide ;
+	prov:label "Reception of the primaH&E stainded slide at the biobank" ;
+    prov:qualifiedAssociation [
+        a prov:Association ;
+        prov:agent   :worker1 ; 
+    ];      
+    .
+
+:slide a prov:Entity , pbm:sampleEntity, obo:OBI_0002125;  
+    cpm:externalID "2007-PAT-34441208197199889-7780-BLK-LY-CUT07" ;
+    pbm:hasPreservation  obo:OBIB_000067 ;
+    prov:label "H&E-stained fixed tissue slide";
+    prov:wasGeneratedBy :act01; 
+    prov:specializationOf pathologylab:connector_of_slide 
+    .
+
+:act01 a prov:Activity,  cpm:receiptActivity ;
+	prov:label "CPM receipt activity" ;
+    .
+
+:externalInputConnectorOfSlide  prov:Activity,  cpm:externalInputConnector.
+    prov:wasDerivedFrom pathologylab:connectorOfSlide ;
+    prov:wasAttributedTo :senderAgent  .
+
+pathologylab:connectorOfSlide a prov:Entity , cpm:receiverConnector;  
+    prov:wasInvalidatedBy :act01.
 
 :worker1 a prov:Agent , prov:Person ;
 	foaf:givenName "Brock Bear".
@@ -63,6 +128,3 @@
 
 :worker4 a prov:Agent , prov:Person ;
 	foaf:givenName "Bella Bison" .
-
-:worker5 a prov:Agent , prov:Person ;
-	foaf:givenName "Brianna Badger" .

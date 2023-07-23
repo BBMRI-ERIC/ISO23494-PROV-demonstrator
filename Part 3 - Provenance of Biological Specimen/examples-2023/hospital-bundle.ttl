@@ -14,7 +14,7 @@
 #http://purl.bioontology.org/ontology/SNOMEDCT/394584008
 #http://purl.obolibrary.org/obo/OMIABIS_0000052
 
-:connector_of_primarysample a prov:Entity , cpm:forwardConnector ;
+:connectorOfPrimarySample a prov:Entity , cpm:forwardConnector ;
 	cpm:receiverBundleId pathologylab:prov_of_study_slide_2007-PAT-34441208197199889-7780-BLK-LY-CUT07;
     prov:wasAttributedTo :receiverAgent ;
     prov:wasGeneratedBy :act_main .
