@@ -10,8 +10,8 @@
 @prefix sphn: <https://biomedit.ch/rdf/sphn-ontology/sphn#> .
 @prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix snomed: <http://snomed.info/id/> .
-
+@prefix snomed: <http://purl.bioontology.org/ontology/SNOMEDCT/> .
+ 
 
 :connectorOfSlide a prov:Entity , cpm:forwardConnector ;
 	cpm:receiverBundleId biobank:provOfSlide;
