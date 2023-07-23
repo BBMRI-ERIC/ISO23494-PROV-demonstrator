@@ -1,0 +1,141 @@
+@prefix : <http://pathologylab.demo/> .
+@prefix hospital: <http://hospital.demo/> .
+@prefix biobank:  <http://biobank.demo/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix cpm: <http://commonprovenancemodel.org/ns/0.1> .
+@prefix pbm: <http://commonprovenancemodel.org/ns/0.1/pbm> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix sphn: <https://biomedit.ch/rdf/sphn-ontology/sphn#> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix snomed: <http://snomed.info/id/> .
+
+
+:connector_of_slide a prov:Entity , cpm:forwardConnector ;
+	cpm:receiverBundleId biobank:prov_of_slide;
+    prov:wasAttributedTo :receiverAgent ;
+    prov:wasGeneratedBy :act_main ;
+    prov:specializationOf :slide .
+
+:receiverAgent a prov:Agent , cpm:receiverAgent .
+
+:act_main a prov:Activity , cpm:mainActivity ;
+    prov:used :connector_of_slide ;
+    prov:used :externalInputConnector_of_primarysample;
+	dct:hasPart :act01, :act02, :act03, :act04  .
+
+:sampleTransport a prov:Role .    
+
+:act04 a prov:Activity,  pbm:transportActivity, obo:OBI_0001580 ;
+	prov:startedAtTime "2010-10-15T11:00:01.024000+01:00"^^xsd:dateTime ;
+  	prov:endedAtTime "2010-10-15T11:30:01.024000+01:00"^^xsd:dateTime ;
+    prov:used :slide ;
+	prov:label '''Secure transportation of the stained histology slide from 
+                pathology lab to biobank for storage and future studies''';
+    prov:qualifiedAssociation [
+        a prov:Association ;
+        prov:agent :worker4 ; 
+        prov:hadRole :sampleTransport ;
+    ];      
+    .
+
+:slide a prov:Entity , pbm:sampleEntity, obo:OBI_0002125;  
+    cpm:externalID "2007-PAT-34441208197199889-7780-BLK-LY-CUT07" ;
+    pbm:hasPreservation  obo:OBIB_000067 ;
+    prov:label "H&E-stained fixed tissue slide";
+    prov:wasDerivedFrom :block;
+    prov:wasGeneratedBy :act03; 
+    .
+
+:microtomeDevice a prov:Entity , pbm:deviceEntity, snomed:705219006 ;  
+    cpm:externalID "MT123" ;
+    prov:label "KD-202A Rotary Microtome"; 
+    .
+
+:stainingDevice a prov:Entity , pbm:deviceEntity ;  
+    cpm:externalID "Stainer123" ;
+    prov:label "HistoCore SPECTRA ST"; 
+    .
+
+
+:act03 a prov:Activity,  pbm:processingActivity, snomed:108256005, obo:OBI_0000341, obo:OBI_0002124 ;
+	prov:startedAtTime "2010-10-12T16:15:01.024000+01:00"^^xsd:dateTime ;
+    prov:used :microtomeDevice, :stainingDevice ;
+    prov:used :block ;
+	prov:label ''' Sectioning and staining, during which thin slices of tissue 
+        are cut from the paraffin-embedded block and then stained for microscopic 
+        examination. This process highlights various tissue structures, enabling 
+        in-depth cellular analysis and facilitating accurate diagnosis.''' ;
+    prov:qualifiedAssociation [
+        a prov:Association ;
+        prov:agent   :worker3 ; 
+    ];      
+    .
+
+:block a prov:Entity , pbm:sampleEntity, obo:OMIABIS_0000051 ;  
+    cpm:externalID "2007-PAT-34441208197199889-7780-BLK-LY" ;
+    pbm:hasPreservation  obo:OMIABIS_0000911 ;
+    prov:wasDerivedFrom :receivedsample ;
+    prov:wasGeneratedBy :act02; 
+    .
+
+:act02 a prov:Activity,  pbm:processingActivity, snomed:168126000 ;
+	prov:startedAtTime "2010-10-10T12:00:01.024000+01:00"^^xsd:dateTime ;
+	prov:endedAtTime "2010-10-10T12:00:01.024000+01:00"^^xsd:dateTime ;
+    prov:used :receivedsample ;
+	prov:label '''Gross examination, during which sections of lymph node 
+        material are meticulously placed into formalin-fixed, 
+        paraffin-embedded (FFPE) blocks for preservation and further analysis''' ;
+    prov:qualifiedAssociation [
+        a prov:Association ;
+        prov:agent   :worker2 ; 
+    ];      
+    .
+
+:receivedsample a prov:Entity , pbm:sampleEntity, obo:OBI_0000671;  
+    cpm:externalID "2007-PAT-34441208197199889-7780-PS-01" ;
+    pbm:hasPreservation  sphn:PAXgeneTissue ;
+    pbm:hasContainerType sphn:PolypropyleneTubeSterile ;
+    prov:wasDerivedFrom :primarysample
+    .
+
+:act01 a prov:Activity,  pbm:receptionActivity ;
+	prov:startedAtTime "2010-10-10T10:00:01.024000+01:00"^^xsd:dateTime ;
+	prov:endedAtTime "2010-10-10T10:00:01.024000+01:00"^^xsd:dateTime ;
+    prov:used :primarysample ;
+	prov:label "Reception of the primary sample at the pathology lab" ;
+    prov:qualifiedAssociation [
+        a prov:Association ;
+        prov:agent   :worker1 ; 
+    ];      
+    .
+
+:primarysample a prov:Entity , pbm:sampleEntity, obo:OBI_0000671;  
+    cpm:externalID "2007-PAT-34441208197199889-7780-PS-01" ;
+    pbm:hasPreservation  sphn:PAXgeneTissue ;
+    pbm:hasContainerType sphn:PolypropyleneTubeSterile ;
+    prov:specializationOf :externalInputConnector_of_primarysample 
+    .
+
+hospital:connector_of_primarysample a prov:Entity , cpm:receiverConnector;  
+    prov:wasInvalidatedBy :act01.
+
+:senderAgent a prov:Agent , cpm:senderAgent .
+
+:externalInputConnector_of_primarysample a prov:Entity , cpm:externalInputConnector;  
+   prov:wasDerivedFrom hospital:connector_of_primarysample ;
+   prov:wasAttributedTo :senderAgent  .
+
+:worker1 a prov:Agent , prov:Person ;
+	foaf:givenName "Parker Penguin".
+
+:worker2 a prov:Agent , prov:Person ;
+	foaf:givenName "Penelope Parrot".
+
+:worker3 a prov:Agent , prov:Person ;
+	foaf:givenName "Patrick Panther" .
+
+:worker4 a prov:Agent , prov:Person ;
+	foaf:givenName "Paige Peacock" .

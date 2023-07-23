@@ -1,0 +1,68 @@
+@prefix :  <http://biobank.demo/> .
+@prefix pathologylab: <http://pathologylab.demo/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix cpm: <http://commonprovenancemodel.org/ns/0.1> .
+@prefix pbm: <http://commonprovenancemodel.org/ns/0.1/pbm> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix sphn: <https://biomedit.ch/rdf/sphn-ontology/sphn#> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix loinc: <https://biomedit.ch/rdf/sphn-resource/loinc/> .
+@prefix snomed: <http://snomed.info/id/> .
+
+
+:act_main a prov:Activity , cpm:mainActivity ;
+    prov:used :connector_of_slide ;
+    prov:used :externalInputConnector_of_primarysample;
+	dct:hasPart :act01, :act02, :act03, :act04  .
+
+
+# connector and the main activity
+#biobankBundle.entity('biobank:connector_of_sample_215784545', (
+#    (prov.PROV_TYPE, 'cpm:senderConnector'),))
+#biobankBundle.specializationOf('biobank:sample_215784545', 'biobank:connector_of_sample_215784545')
+
+#biobankBundle.activity('biobank:act_main',None,None, {prov.PROV_TYPE: 'cpm:mainActivity'})
+
+#biobankBundle.used('biobank:act_main', 'biobank:externalInputConnector_of_sample_215784544')
+#biobankBundle.used('biobank:receipt_of_sample_215784544','pathologylab:connector_of_sample_215784544')
+#biobankBundle.wasGeneratedBy('biobank:externalInputConnector_of_sample_215784544','biobank:receipt_of_sample_215784544')
+#biobankBundle.wasDerivedFrom('biobank:externalInputConnector_of_sample_215784544','pathologylab:connector_of_sample_215784544')
+
+
+
+
+:slideDelivered a prov:Entity , pbm:sampleEntity, obo:OBI_0002125 ;  
+    cpm:externalID "demo-study:sample007" ;
+    pbm:hasPreservation  obo:OBIB_000067 ;
+    prov:label "the sample delivered from the biobank to the researcher";
+    prov:wasDerivedFrom :slideTakenFromStorage;
+    prov:wasGeneratedBy :actxx; 
+    .
+
+
+:slideTakenFromStorage a prov:Entity , pbm:sampleEntity, obo:OBI_0002125 ;  
+    cpm:externalID "demo-study:sample007" ;
+    pbm:hasPreservation  obo:OBIB_000067 ;
+    prov:label "the sample delivered from the biobank to the researcher";
+    prov:wasDerivedFrom :slideTakenFromStorage;
+    prov:wasGeneratedBy :act03; 
+    .
+
+
+:worker1 a prov:Agent , prov:Person ;
+	foaf:givenName "Brock Bear".
+
+:worker2 a prov:Agent , prov:Person ;
+	foaf:givenName "Brooke Bat".
+
+:worker3 a prov:Agent , prov:Person ;
+	foaf:givenName "Blake Baboon" .
+
+:worker4 a prov:Agent , prov:Person ;
+	foaf:givenName "Bella Bison" .
+
+:worker5 a prov:Agent , prov:Person ;
+	foaf:givenName "Brianna Badger" .

@@ -1,0 +1,87 @@
+@prefix : <http://hospital.demo/> .
+@prefix pathologylab: <http://pathologylab.demo/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix cpm: <http://commonprovenancemodel.org/ns/0.1> .
+@prefix pbm: <http://commonprovenancemodel.org/ns/0.1/pbm> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix sphn: <https://biomedit.ch/rdf/sphn-ontology/sphn#> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix snomed: <http://purl.bioontology.org/ontology/SNOMEDCT/> .
+ 
+#http://purl.bioontology.org/ontology/SNOMEDCT/394584008
+#http://purl.obolibrary.org/obo/OMIABIS_0000052
+
+:connector_of_primarysample a prov:Entity , cpm:forwardConnector ;
+	cpm:receiverBundleId pathologylab:prov_of_study_slide_2007-PAT-34441208197199889-7780-BLK-LY-CUT07;
+    prov:wasAttributedTo :receiverAgent ;
+    prov:wasGeneratedBy :act_main .
+
+:receiverAgent a prov:Agent , cpm:receiverAgent .
+    
+:act_main a prov:Activity , cpm:mainActivity ;
+	dct:hasPart :act01, :act02 .
+    
+:patient a prov:Entity , pbm:sourceEntity ;
+	pbm:consentInformation :consent ;
+	cpm:comment "The value of the prov:label is a human readable representation";
+	prov:label "Franz, Musterman, 12.Aug.1971, 34441208197199889" ;
+	pbm:belongsToTaxonomy obo:NCIT_C14225 .
+
+:location a prov:Entity , geosparql:Feature ;
+	geosparql:hasGeometry "POINT(15.400062565074492 47.078053487297296)" .
+
+:consent a prov:Entity , sphn:Consent ;
+	sphn:hasTypeCode snomed:385645004 .
+
+:primarysample a prov:Entity , pbm:sampleEntity, obo:OBI_0000671;
+    prov:specializationOf :connector_of_primarysample ;
+	sphn:hasBodySite :bodySideSigmoidLymphNode ;
+    prov:wasDerivedFrom :patient ;
+	cpm:externalID "2007-PAT-34441208197199889-7780-PS-01" ;
+	pbm:hasContainerType sphn:PolypropyleneTubeSterile ;
+	pbm:hasPreservation sphn:PAXgeneTissue .
+
+:bodySideSigmoidLymphNode a prov:Entity , sphn:BodySite ;
+	sphn:hasLaterality :leftLaternity ;
+	sphn:hasCode snomed:278931004 .
+
+:leftLaternity a prov:Entity, sphn:Laterality ;
+	sphn:hasCode snomed:7771000 .
+
+:sampleTransport a prov:Role .     
+    
+:act02 a prov:Activity, pbm:transportActivity;
+	prov:startedAtTime "2010-10-10T11:26:01.024+01:00"^^xsd:dateTime ;
+	prov:endedAtTime "2010-10-10T12:00:01.024+01:00"^^xsd:dateTime ;
+    prov:used :primarysample;
+	prov:label "Safe conveyance of primary sample from surgical suite to pathology laboratory";
+    prov:qualifiedAssociation [
+        a prov:Association ;
+        prov:agent   :worker2 ; 
+        prov:hadRole :sampleTransport ;
+];
+    .
+    
+:surgery a prov:Role .      
+    
+:act01 a prov:Activity,  pbm:acquisitionActivity ;
+	prov:startedAtTime "2010-10-10T11:00:01.024+01:00"^^xsd:dateTime ;
+	prov:endedAtTime "2010-10-10T11:26:01.024+01:00"^^xsd:dateTime ;
+    prov:used :patient;
+	prov:label "Extraction of primary sample from patient during surgical procedure";
+	pbm:atGeographicLocation :location ;
+    prov:qualifiedAssociation [
+        a prov:Association ;
+        prov:agent   :worker1 ; 
+        prov:hadRole :surgery,  snomed:394584008;
+    ];      
+    .
+
+:worker1 a prov:Agent , prov:Person ;
+	foaf:givenName "Hannah Hippo" .
+
+:worker2 a prov:Agent , prov:Person ;
+	foaf:givenName "Henry Hedgehog" .

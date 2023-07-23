@@ -1,0 +1,396 @@
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix pathologylab: <http://pathologylab.demo/> .
+@prefix biobank: <http://biobank.demo/> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix sphn: <https://biomedit.ch/rdf/sphn-ontology/sphn#> .
+@prefix hospital: <http://hospital.demo/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix pbm: <http://provenanceofbiologicalmaterial.org/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix cpm: <http://commonprovenancemodel.org/> .
+@prefix loinc: <https://biomedit.ch/rdf/sphn-resource/loinc/> .
+@prefix snomed: <http://snomed.info/id/> .
+
+
+biobank:received_sample_889-7780-BLK-LY-CUT07 prov:specializationOf biobank:externalInputConnector_of_sample_215784544 .
+
+biobank:sample_889-7780-BLK-LY-CUT07 prov:specializationOf pathologylab:connector_of_sample_215784544 .
+
+biobank:drawerBox12 a prov:Entity , "pbm:deviceEntity" ;
+	rdfs:label "Drawer Box 12" ;
+	cpm:externalID "DB12" .
+
+biobank:received_sample_889-7780-BLK-LY-CUT07 a prov:Entity , "pbm:sampleEntity" , "obo:OBIB_0000661" ;
+	rdfs:label "sample received in the biobank" ;
+	cpm:externalID "2007-PAT-34441208197199889-7780-BLK-LY-CUT07" ;
+	pbm:hasPreservation "obo:OBIB_000067" .
+
+biobank:externalInputConnector_of_sample_215784544 a prov:Entity , "cpm:currentConnector" .
+
+biobank:stored_sample_889-7780-BLK-LY-CUT07 a prov:Entity , "pbm:sampleEntity" , "obo:OBIB_0000661" ;
+	rdfs:label "sample stored in the biobank" ;
+	cpm:externalID "2007-PAT-34441208197199889-7780-BLK-LY-CUT07" ;
+	pbm:hasPreservation "obo:OBIB_000067" .
+
+pathologylab:connector_of_sample_215784544 a prov:Entity , "cpm:backwardConnector" ;
+	cpm:senderBundleId "pathologylab:prov_of_study_slide_2007-PAT-34441208197199889-7780-BLK-LY-CUT07" .
+
+biobank:sample_889-7780-BLK-LY-CUT07 a prov:Entity , "pbm:sampleEntity" , "obo:OBIB_0000661" ;
+	cpm:externalID "2007-PAT-34441208197199889-7780-BLK-LY-CUT07" ;
+	pbm:hasPreservation "obo:OBIB_000067" .
+
+biobank:sample_215784544 a prov:Entity , "pbm:sampleEntity" , "obo:OBIB_0000661" ;
+	rdfs:label "sample taken out of the storage" ;
+	cpm:externalID "2007-PAT-34441208197199889-7780-BLK-LY-CUT07" ;
+	pbm:hasPreservation "obo:OBIB_000067" .
+
+biobank:sample_215784545 a prov:Entity , "pbm:sampleEntity" , "obo:OBIB_0000661" ;
+	rdfs:label "the sample delivered from the biobank to the researcher" ;
+	cpm:externalID "89612183-8fa1-4b71-adff-92754fb48a4b" , "demo-study:sample007" ;
+	pbm:hasPreservation "obo:OBIB_000067" .
+
+pathologylab:connector_of_sample_215784544 prov:wasAttributedTo biobank:senderAgent .
+
+biobank:act_main prov:used biobank:externalInputConnector_of_sample_215784544 .
+
+biobank:act_15754 prov:used biobank:stored_sample_889-7780-BLK-LY-CUT07 .
+
+biobank:act_57584 prov:used biobank:sample_215784544 .
+
+biobank:act_57585 prov:used biobank:sample_215784545 .
+
+biobank:receipt_of_sample_215784544 prov:used pathologylab:connector_of_sample_215784544 .
+
+biobank:act_57582r prov:used biobank:sample_889-7780-BLK-LY-CUT07 .
+
+biobank:act_57582 prov:used biobank:drawerBox12 , biobank:received_sample_889-7780-BLK-LY-CUT07 .
+
+_:blank1 a prov:Association ;
+	prov:agent biobank:WORKER_1 .
+
+biobank:act_57585 prov:qualifiedAssociation _:blank1 .
+
+_:blank1 prov:hadRole "sort in" .
+
+_:blank2 a prov:Association ;
+	prov:agent biobank:WORKER_3 .
+
+biobank:act_57582r prov:qualifiedAssociation _:blank2 .
+
+_:blank2 prov:hadRole "receivment" .
+
+_:blank3 a prov:Association ;
+	prov:agent biobank:WORKER_3 .
+
+biobank:act_57582 prov:qualifiedAssociation _:blank3 .
+
+_:blank3 prov:hadRole "sort in" .
+
+_:blank4 a prov:Association ;
+	prov:agent biobank:WORKER_3 .
+
+biobank:act_15754 prov:qualifiedAssociation _:blank4 .
+
+_:blank4 prov:hadRole "pick" .
+
+_:blank5 a prov:Association ;
+	prov:agent biobank:WORKER_2 .
+
+biobank:act_57584 prov:qualifiedAssociation _:blank5 .
+
+_:blank5 prov:hadRole "sort in" .
+
+biobank:externalInputConnector_of_sample_215784544 prov:wasDerivedFrom pathologylab:connector_of_sample_215784544 .
+
+biobank:stored_sample_889-7780-BLK-LY-CUT07 prov:wasDerivedFrom biobank:received_sample_889-7780-BLK-LY-CUT07 .
+
+biobank:sample_215784544 prov:wasDerivedFrom biobank:stored_sample_889-7780-BLK-LY-CUT07 .
+
+biobank:sample_215784545 prov:wasDerivedFrom biobank:sample_215784544 .
+
+biobank:received_sample_889-7780-BLK-LY-CUT07 prov:wasDerivedFrom biobank:sample_889-7780-BLK-LY-CUT07 .
+
+biobank:act_57585 a prov:Activity ;
+	prov:startedAtTime "2020-11-23T09:22:01.024Z"^^xsd:dateTime ;
+	prov:endedAtTime "2020-11-21T07:15:00.024Z"^^xsd:dateTime ;
+	a "pbm:distributionActivity" .
+
+biobank:act_57584 a prov:Activity ;
+	prov:startedAtTime "2020-11-22T07:15:01.024Z"^^xsd:dateTime ;
+	a "pbm:Processing" .
+
+biobank:act_57582 a prov:Activity ;
+	prov:startedAtTime "2010-10-15T14:30:01.024+01:00"^^xsd:dateTime ;
+	prov:endedAtTime "2020-11-21T11:00:01.024Z"^^xsd:dateTime ;
+	a "obo:OBI_0000977" ;
+	rdfs:label "long term storage activity auf a tissue slide" ;
+	<https://github.com/BBMRI-ERIC/ISO23494-PROV-demonstrator/tree/main/Part%203%20-%20Provenance%20of%20Biological%20Specimen/examples-2023/pbm.toEnvironment> "OBO:NCIT_C70719" .
+
+biobank:act_15754 a prov:Activity ;
+	prov:startedAtTime "2020-11-21T11:00:01.024Z"^^xsd:dateTime ;
+	a "pbm:retrievalActivity" ;
+	rdfs:label "retrieve slide from drawer" .
+
+biobank:act_main a prov:Activity , "cpm:mainActivity" ;
+	dct:hasPart "biobank:act_15754" , "biobank:act_57582" , "biobank:act_57584" .
+
+biobank:act_57582r a prov:Activity ;
+	prov:startedAtTime "2010-10-15T11:30:01.024+01:00"^^xsd:dateTime ;
+	prov:endedAtTime "2010-10-15T11:30:01.024+01:00"^^xsd:dateTime ;
+	a "pbm:receivmentActivity" ;
+	rdfs:label "recieve the sample in the biobank" .
+
+biobank:receipt_of_sample_215784544 a prov:Activity , "cpm:receiptActivity" ;
+	dct:hasPart "biobank:act_57582r" .
+
+pathologylab:connector_of_sample_215784544 prov:wasInvalidatedBy biobank:receipt_of_sample_215784544 .
+
+biobank:sample_215784545 prov:wasGeneratedBy biobank:act_57584 .
+
+biobank:externalInputConnector_of_sample_215784544 prov:wasGeneratedBy biobank:receipt_of_sample_215784544 .
+
+biobank:received_sample_889-7780-BLK-LY-CUT07 prov:wasGeneratedBy biobank:act_57582r .
+
+biobank:stored_sample_889-7780-BLK-LY-CUT07 prov:wasGeneratedBy biobank:act_57582 .
+
+biobank:sample_215784544 prov:wasGeneratedBy biobank:act_15754 .
+
+biobank:senderAgent a prov:Agent , "cpm:senderAgent" .
+
+biobank:WORKER_3 a prov:Agent , "prov:Person" ;
+	<https://github.com/BBMRI-ERIC/ISO23494-PROV-demonstrator/tree/main/Part%203%20-%20Provenance%20of%20Biological%20Specimen/examples-2023/name> "Brooke Bat" .
+
+biobank:WORKER_1 a prov:Agent , "prov:Person" ;
+	<https://github.com/BBMRI-ERIC/ISO23494-PROV-demonstrator/tree/main/Part%203%20-%20Provenance%20of%20Biological%20Specimen/examples-2023/name> "Bella Bison" .
+
+biobank:WORKER_2 a prov:Agent , "prov:Person" ;
+	<https://github.com/BBMRI-ERIC/ISO23494-PROV-demonstrator/tree/main/Part%203%20-%20Provenance%20of%20Biological%20Specimen/examples-2023/name> "Blake Baboon" .
+
+pathologylab:act-transport01 a prov:Activity ;
+	prov:startedAtTime "2010-10-15T11:00:01.024+01:00"^^xsd:dateTime ;
+	prov:endedAtTime "2010-10-15T11:30:01.024+01:00"^^xsd:dateTime ;
+	a "pbm:transportActivity" ;
+	rdfs:label "transport of the slide to the biobank after the diagnostic process is finished" .
+
+pathologylab:mainActivity a prov:Activity , "cpm:mainActivity" ;
+	dct:hasPart "pathologylab:act_57581" , "pathologylab:act_57580" .
+
+pathologylab:receipt_of__sample_215784544 a prov:Activity , "cpm:receiptActivity" ;
+	dct:hasPart "pathologylab:act01" .
+
+pathologylab:act01 a prov:Activity ;
+	prov:startedAtTime "2010-10-10T12:00:01.024+01:00"^^xsd:dateTime ;
+	prov:endedAtTime "2010-10-10T12:00:01.024+01:00"^^xsd:dateTime ;
+	a "pbm:receivmentActivity" ;
+	rdfs:label "recieve the sample in the biobank" .
+
+pathologylab:act_57581 a prov:Activity ;
+	prov:startedAtTime "2010-10-12T16:15:01.024+01:00"^^xsd:dateTime ;
+	a "obo:OBI_0000372" ;
+	rdfs:label "cutting a block and staining the slide" .
+
+pathologylab:act_57580 a prov:Activity ;
+	prov:startedAtTime "2010-10-11T09:22:01.024+01:00"^^xsd:dateTime ;
+	a "snomed:168126000" ;
+	rdfs:label "macroscopy, putting a lypmh nodes in a block" .
+
+hospital:connector_of_primarysample_34441208197199889 prov:wasInvalidatedBy pathologylab:receipt_of__sample_215784544 .
+
+pathologylab:externalInputConnector_of_primarysample_34441208197199889 prov:wasGeneratedBy pathologylab:receipt_of__sample_215784544 .
+
+pathologylab:sample_215784544 prov:wasGeneratedBy pathologylab:act_57581 .
+
+pathologylab:receivedSample_215784544 prov:wasGeneratedBy pathologylab:act01 .
+
+pathologylab:connector_of_sample_215784544 prov:wasGeneratedBy pathologylab:mainActivity .
+
+pathologylab:sample_215784543 prov:wasGeneratedBy pathologylab:act_57580 .
+
+pathologylab:receiverAgent a prov:Agent , "cpm:receiverAgent" .
+
+pathologylab:WORKER_3 a prov:Agent , "prov:Person" ;
+	<https://github.com/BBMRI-ERIC/ISO23494-PROV-demonstrator/tree/main/Part%203%20-%20Provenance%20of%20Biological%20Specimen/examples-2023/name> "Patrick Panther" .
+
+pathologylab:WORKER_4 a prov:Agent , "prov:Person" ;
+	<https://github.com/BBMRI-ERIC/ISO23494-PROV-demonstrator/tree/main/Part%203%20-%20Provenance%20of%20Biological%20Specimen/examples-2023/name> "Paige Peacock" .
+
+pathologylab:senderAgent a prov:Agent , "cpm:senderAgent" .
+
+pathologylab:WORKER_1 a prov:Agent , "prov:Person" ;
+	<https://github.com/BBMRI-ERIC/ISO23494-PROV-demonstrator/tree/main/Part%203%20-%20Provenance%20of%20Biological%20Specimen/examples-2023/name> "Parker Penguin" .
+
+pathologylab:WORKER_2 a prov:Agent , "prov:Person" ;
+	<https://github.com/BBMRI-ERIC/ISO23494-PROV-demonstrator/tree/main/Part%203%20-%20Provenance%20of%20Biological%20Specimen/examples-2023/name> "Penelope Parrot" .
+
+pathologylab:sample_215784544 prov:specializationOf pathologylab:connector_of_sample_215784544 .
+
+pathologylab:receivedSample_215784544 prov:specializationOf pathologylab:externalInputConnector_of_primarysample_34441208197199889 .
+
+pathologylab:primarysample_34441208197199889 prov:specializationOf hospital:connector_of_primarysample_34441208197199889 ;
+	a prov:Entity , "pbm:sampleEntity" , "obo:OMIABIS_0000052" ;
+	cpm:externalID "2007-PAT-34441208197199889-7780-PS-01" ;
+	pbm:hasContainerType "sphn:PolypropyleneTubeSterile" ;
+	pbm:hasPreservation "sphn:PAXgeneTissue" .
+
+pathologylab:connector_of_sample_215784544 a prov:Entity , "cpm:forwardConnector" ;
+	cpm:receiverBundleId "biobank:prov_of_study_slide_sample_007" .
+
+pathologylab:receivedSample_215784544 a prov:Entity , "pbm:sampleEntity" , "obo:OMIABIS_0000052" ;
+	cpm:externalID "2007-PAT-34441208197199889-7780-PS-01" ;
+	pbm:hasContainerType "sphn:PolypropyleneTubeSterile" ;
+	pbm:hasPreservation "sphn:PAXgeneTissue" .
+
+pathologylab:microtomeDevice21 a prov:Entity , "snomed:705219006" ;
+	rdfs:label "Microtome" ;
+	cpm:externalID "MT21" .
+
+pathologylab:externalInputConnector_of_primarysample_34441208197199889 a prov:Entity , "cpm:currentConnector" .
+
+pathologylab:sample_215784543 a prov:Entity , "pbm:sampleEntity" , "obo:OMIABIS_0000051" ;
+	cpm:externalID "2007-PAT-34441208197199889-7780-BLK-LY" ;
+	pbm:hasPreservation "obo:OMIABIS_0000911" .
+
+pathologylab:sample_215784544 a prov:Entity , "pbm:sampleEntity" , "obo:OBIB_0000661" ;
+	rdfs:label "sample used in the pathologylab" ;
+	cpm:externalID "2007-PAT-34441208197199889-7780-BLK-LY-CUT07" ;
+	pbm:hasPreservation "obo:OBIB_000067" .
+
+hospital:connector_of_primarysample_34441208197199889 a prov:Entity , "cpm:backwardConnector" ;
+	cpm:senderBundleId "hospital:prov_of_primarysample_34441208197199889" .
+
+pathologylab:mainActivity prov:used pathologylab:externalInputConnector_of_primarysample_34441208197199889 .
+
+pathologylab:act_57581 prov:used pathologylab:sample_215784543 .
+
+pathologylab:act-transport01 prov:used pathologylab:sample_215784544 .
+
+pathologylab:act01 prov:used pathologylab:primarysample_34441208197199889 .
+
+pathologylab:act_57580 prov:used pathologylab:receivedSample_215784544 .
+
+pathologylab:receipt_of__sample_215784544 prov:used hospital:connector_of_primarysample_34441208197199889 .
+
+pathologylab:connector_of_sample_215784544 prov:wasAttributedTo pathologylab:receiverAgent .
+
+hospital:connector_of_primarysample_34441208197199889 prov:wasAttributedTo pathologylab:senderAgent .
+
+_:blank6 a prov:Association ;
+	prov:agent pathologylab:WORKER_3 .
+
+pathologylab:act01 prov:qualifiedAssociation _:blank6 .
+
+_:blank6 prov:hadRole "receivment" .
+
+_:blank7 a prov:Association ;
+	prov:agent pathologylab:WORKER_2 .
+
+pathologylab:act_57580 prov:qualifiedAssociation _:blank7 .
+
+_:blank7 prov:hadRole "sample processing" .
+
+_:blank8 a prov:Association ;
+	prov:agent pathologylab:WORKER_1 .
+
+pathologylab:act_57581 prov:qualifiedAssociation _:blank8 .
+
+_:blank8 prov:hadRole "sample processing" .
+
+_:blank9 a prov:Association ;
+	prov:agent pathologylab:WORKER_4 .
+
+pathologylab:act-transport01 prov:qualifiedAssociation _:blank9 .
+
+_:blank9 prov:hadRole "transport" .
+
+pathologylab:sample_215784544 prov:wasDerivedFrom pathologylab:sample_215784543 .
+
+pathologylab:receivedSample_215784544 prov:wasDerivedFrom pathologylab:primarysample_34441208197199889 .
+
+pathologylab:connector_of_sample_215784544 prov:wasDerivedFrom pathologylab:externalInputConnector_of_primarysample_34441208197199889 .
+
+pathologylab:externalInputConnector_of_primarysample_34441208197199889 prov:wasDerivedFrom hospital:connector_of_primarysample_34441208197199889 .
+
+pathologylab:sample_215784543 prov:wasDerivedFrom pathologylab:receivedSample_215784544 .
+
+hospital:primarysample_34441208197199889 prov:specializationOf hospital:connector_of_primarysample_34441208197199889 .
+
+hospital:patient34441208197199889 a prov:Entity , "pbm:sourceEntity" ;
+	pbm:consentInformation "hospital:consent34441208197199889" ;
+	cpm:comment "The value of the label is representation of a patient" ;
+	pbm:label "Franz, Musterman, 12.Aug.1971, 34441208197199889" ;
+	pbm:belongsToTaxonomy "obo:NCIT_C14225" .
+
+hospital:location-LKH-west a prov:Entity , "geosparql:Feature" ;
+	geosparql:hasGeometry "POINT(15.400062565074492 47.078053487297296)" .
+
+hospital:consent34441208197199889 a prov:Entity , "sphn:Consent" ;
+	sphn:hasTypeCode "snomed:385645004" .
+
+hospital:primarysample_34441208197199889 a prov:Entity , "pbm:sampleEntity" , "obo:OMIABIS_0000052" ;
+	sphn:hasBodySite hospital:BodySideSigmoidLymphNode ;
+	pbm:label "2007-PAT-34441208197199889-7780-PS-01" ;
+	pbm:hasContainerType "sphn:PolypropyleneTubeSterile" ;
+	pbm:hasPreservation "sphn:PAXgeneTissue" .
+
+hospital:BodySideSigmoidLymphNode a prov:Entity , "sphn:BodySite" ;
+	sphn:hasLaterality hospital:leftLaternity ;
+	sphn:hasCode "snomed:278931004" .
+
+hospital:leftLaternity a prov:Entity , "sphn:Laterality" ;
+	sphn:hasCode "snomed:7771000" .
+
+hospital:connector_of_primarysample_34441208197199889 a prov:Entity , "cpm:forwardConnector" ;
+	cpm:receiverBundleId "pathologylab:prov_of_study_slide_2007-PAT-34441208197199889-7780-BLK-LY-CUT07" ;
+	prov:wasAttributedTo hospital:receiverAgent .
+
+hospital:act01 prov:used hospital:patient34441208197199889 .
+
+hospital:act02 prov:used hospital:primarysample_34441208197199889 .
+
+hospital:primarysample_34441208197199889 prov:wasDerivedFrom hospital:patient34441208197199889 .
+
+_:blank10 a prov:Association ;
+	prov:agent hospital:WORKER_1 .
+
+hospital:act01 prov:qualifiedAssociation _:blank10 .
+
+_:blank10 prov:hadRole "snomed:394584008" .
+
+_:blank11 a prov:Association ;
+	prov:agent hospital:WORKER_2 .
+
+hospital:act02 prov:qualifiedAssociation _:blank11 .
+
+_:blank11 prov:hadRole "sample transport" .
+
+hospital:act02 a prov:Activity ;
+	prov:startedAtTime "2010-10-10T11:26:01.024+01:00"^^xsd:dateTime ;
+	prov:endedAtTime "2010-10-10T12:00:01.024+01:00"^^xsd:dateTime ;
+	a "pbm:transportActivity" ;
+	rdfs:label "transport of primary sample to pathology lab" .
+
+hospital:act01 a prov:Activity ;
+	prov:startedAtTime "2010-10-10T11:00:01.024+01:00"^^xsd:dateTime ;
+	prov:endedAtTime "2010-10-10T11:26:01.024+01:00"^^xsd:dateTime ;
+	a "pbm:acquisitionActivity" ;
+	rdfs:label "acquisition of the primary sample" ;
+	pbm:atGeographicLocation "hospital:location-LKH-west" .
+
+hospital:act_main a prov:Activity , "cpm:mainActivity" ;
+	dct:hasPart "hospital:act01" .
+
+hospital:primarysample_34441208197199889 prov:wasGeneratedBy hospital:primarysample_34441208197199889 .
+
+hospital:connector_of_primarysample_34441208197199889 prov:wasGeneratedBy hospital:act_main .
+
+hospital:worker_1 a prov:Agent , "prov:Person" ;
+	foaf:givenName "Hannah Hippo" .
+
+hospital:receiverAgent a prov:Agent , "cpm:receiverAgent" .
+
+hospital:worker_2 a prov:Agent , "prov:Person" ;
+	foaf:givenName "Henry Hedgehog" .
