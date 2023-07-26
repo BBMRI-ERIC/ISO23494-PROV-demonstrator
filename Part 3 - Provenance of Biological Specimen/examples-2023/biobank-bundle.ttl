@@ -61,7 +61,7 @@
 	prov:startedAtTime "2023-02-03T12:00:01.024000+01:00"^^xsd:dateTime ;
     prov:used :slide ;
     prov:used :drawerBox12 ;
-    pbm:toEnvironment  obo:NCIT_C70719; # Biospecimen Condition, at Room Temperature
+    pbm:environmentalCondition  obo:NCIT_C70719; # Biospecimen Condition, at Room Temperature
 	prov:label "Retrieval of a slide from the long term storage" ;
     prov:qualifiedAssociation [
         a prov:Association ;
@@ -74,7 +74,7 @@
 	prov:endedAtTime "2023-02-03T12:00:01.024000+01:00"^^xsd:dateTime ;
     prov:used :slide ;
     prov:used :drawerBox12 ;
-    pbm:toEnvironment  obo:NCIT_C70719; # Biospecimen Condition, at Room Temperature
+    pbm:environmentalCondition  obo:NCIT_C70719; # Biospecimen Condition, at Room Temperature
 	prov:label "Long term storage" ;
     prov:qualifiedAssociation [
         a prov:Association ;
