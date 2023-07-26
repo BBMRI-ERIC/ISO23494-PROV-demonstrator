@@ -91,7 +91,7 @@
 	prov:startedAtTime "2010-10-15T11:30:01.024000+01:00"^^xsd:dateTime ;
 	prov:endedAtTime "2010-10-15T11:30:01.024000+01:00"^^xsd:dateTime ;
     prov:used :slide ;
-	prov:label "Reception of the primaH&E stainded slide at the biobank" ;
+	prov:label "Reception of the H&E stainded slide at the biobank" ;
     prov:qualifiedAssociation [
         a prov:Association ;
         prov:agent   :worker1 ; 
